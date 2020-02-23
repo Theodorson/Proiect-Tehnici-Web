@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<title>  
+ LeviathanShop
+</title>
+<link rel="shortcut icon" type="image/png" href="https://i.etsystatic.com/17857814/r/il/a0b9e0/1660312888/il_570xN.1660312888_417a.jpg"/>
+</head>
+
+<body class="bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item  ">
+              <a class="nav-link bg" href="/">Home Page<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/ToateProdusele">Produse <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/Promotii">Promotii<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/CosulMeu">Cosul meu<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/Recenzii"> <strong> Recenzii </strong> <span class="sr-only">(current)</span></a>
+              </li>
+              <% if (admin==true) {%>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/Administrare">Admin <span class="sr-only">(current)</span></a>
+                </li>
+                <% }%>
+              
+          </ul>
+          <% if (admin==false) {%>
+            <form class="form-inline my-2 my-lg-0" action="/Login" method="get" >
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login as admin </button> 
+            </form>
+            <%}  else {%>
+              <form class="form-inline my-2 my-lg-0" action="/Logout" method="get" >
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout </button> 
+              </form>
+              <% } %>
+        </div>
+      </nav>
+      &nbsp;
+      
+      <div class="progress" style="height:35px">
+        <div id="myBar" class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 0%;"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      
+      &nbsp;
+      <div class="d-flex justify-content-center" >
+      <form action="/AdaugareRecenzie" method="POST">
+      <h4 class="text-success"> Iti place design-ul site-ului?</h4> 
+      <div class="form-check">
+        <input type="checkbox" name="I1" onclick="javascript: resetActive(event, 20 );" class="form-check-input" id="I1">
+        <label class="form-check-label text-light" for="I1">Da</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" name="I1_" onclick="javascript: resetActive(event, 20);" class="form-check-input" id="I1_">
+        <label class="form-check-label text-light" for="I1_">Nu</label>
+      </div>
+      <h4 class="text-info"> Ai dori imbunatatiri?</h4>
+      <div class="form-check">
+        <input type="checkbox" name="I2" onclick="javascript: resetActive(event, 40);" class="form-check-input" id="I2">
+        <label class="form-check-label text-light" for="I2">Da</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" name="I2_" onclick="javascript: resetActive(event, 40);" class="form-check-input" id="I2_">
+        <label class="form-check-label text-light" for="I2_">Nu</label>
+      </div>
+      <h4 class="text-warning"> Ti-au placut promotiile ?</h3>
+        <div class="form-check">
+          <input type="checkbox" name="I3" onclick="javascript: resetActive(event, 60);"  class="form-check-input" id="I3">
+          <label class="form-check-label text-light" for="I3">Da</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" name="I3_" onclick="javascript: resetActive(event,60);" class="form-check-input" id="I3_">
+          <label class="form-check-label text-light" for="I3_">Nu</label>
+        </div>
+      <h4 class="text-danger"> Site-ul are o viteza buna de raspuns?</h4>
+      <div class="form-check">
+        <input type="checkbox" name="I4" onclick="javascript: resetActive(event, 80);" class="form-check-input" id="I4">
+        <label class="form-check-label text-light" for="I4">Da</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" name="I4_" onclick="javascript: resetActive(event, 80);" class="form-check-input" id="I4_">
+        <label class="form-check-label text-light" for="I4_">Nu</label>
+      </div>
+      <h4 class="text-light"> Vei recomanda acest site si altor persoane?</h4>
+      <div class="form-check">
+        <input type="checkbox" name="I5"  onclick="javascript: resetActive(event, 100);" class="form-check-input" id="I5">
+        <label class="form-check-label text-light" for="I5">Da</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" name="I5_"  onclick="javascript: resetActive(event, 100);" class="form-check-input" id="I5_">
+        <label class="form-check-label text-light" for="I5_">Nu</label>
+      </div>
+    </div>
+    &nbsp;
+    <div class="text-center">
+    <button type="submit" class="btn btn-outline-success text-light ">Adauga recenzia</button>
+    </div>
+  </form>
+  <script type="text/javascript">
+    function resetActive(event, percent) {
+        $(".progress-bar").css("width", percent + "%").attr("aria-valuenow", percent);
+        $(".progress-completed").text(percent + "%");
+        procent += 20;
+        $("div").each(function () {
+            if ($(this).hasClass("activestep")) {
+                $(this).removeClass("activestep");
+            }
+        });
+
+        if (event.target.className == "col-md-2") {
+            $(event.target).addClass("activestep");
+        }
+        else {
+            $(event.target.parentNode).addClass("activestep");
+        }
+    }
+</script>
+</div>
+  
+
+      &nbsp;&nbsp;&nbsp;
+      
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
